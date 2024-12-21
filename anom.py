@@ -1,51 +1,5 @@
 #!/bin/bash
 
-# Arte ASCII - adicione sua arte abaixo
-ASCII_ART="
-# Aqui vai sua arte ASCII
-# Exemplo:
-#   _.----._     _.---.
-#         .-'        `-.-'      `.
-#       .'                 .:''':.`.
-#     .'        .:'''':. .' .----.  `.
-# .-./        .' .----.    /  .-. \   `.
-#/.-.           /  .-. \   \ ' O ' |    \
-#||        `.   | ' O '/    \ `-' /     |
-#|| (        \   \ `-'/      `-.__     / `.
-# \`-'        )   .-'  --         )        `.
-#  `-'     _.'   (            _.-'    _/\    \
-#     `.       /\_ `-.____..-'     .-' _/    /
-#       `.     \_ `-._         _.-'_.-'   .'
-#         `--.._ `-._ `-.__..-'_.-'     .'
-#       .-'     `-._ `--.__..-'  _.----'`.
-#      /            `---.......-' _     \ \
-#     /                          ( `-._.-` )
-#    /  /     _                  .-    _.-'
-#   (  `-._.-' )                (_   .'    \
-#    `-._      -.               (_.-'       |
-#        `.     _)                   __..---'
-#       |  `-._) ''...__ .-. __...'''__..---'
-#        \      '''...__((=))__...'''      /
-#         |              `-'             .'
-#         \                             /
-#          |                           |
-#          \     \    \      /    /   /
-#           `. \               /     /
-#               `--.._   ` '  _.--'
-#                      [====]
-#                       )  (
-#                    .-'    '-.
-#                   |          |
-#                   | .------. |
-#                   | |      | |
-#                   | '------' |
-#                   |          | 
-#                   '----------'
-"
-
-# Exibe a arte ASCII
-echo "$ASCII_ART"
-
 # Intervalo padrão em segundos (3 minutos)
 INTERVALO=180 # 180 segundos = 3 minutos
 
@@ -55,8 +9,7 @@ INTERVALO=180 # 180 segundos = 3 minutos
 
 # Instala o Tor
 echo "Instalando o Tor..."
-sudo apt update
-sudo apt install -y tor
+sudo apt update && sudo apt install -y tor
 
 # Habilita o Tor para iniciar automaticamente
 echo "Habilitando o Tor para iniciar automaticamente..."
@@ -64,7 +17,7 @@ sudo systemctl enable tor
 
 # Configura o Tor
 echo "Configurando o Tor..."
-sudo bash -c 'echo "SocksPort 9050" >> /etc/tor/torrc'
+echo "SocksPort 9050" | sudo tee -a /etc/tor/torrc
 
 # Configura iptables
 USERNAME=$(whoami)
